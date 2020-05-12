@@ -1,0 +1,245 @@
+.stickHeader{
+  position: sticky;
+  z-index: 2;
+  top:0;
+  background-color: white;
+  width: 100%;
+}
+
+.stickyDiv {
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  /* z-index: -1; */
+  position: sticky;
+  /* ps you can even make this div a flexbox to position elements inside it */
+  /* display: flex;
+  justify-content: center;
+  align-items: center;   */
+}
+
+.stickyDiv p{
+  position: absolute;
+  text-align: center;
+  color: black;
+  right:400px;
+  font-size: 70px;
+  font-family: 'Bangers';
+}
+
+.tab {
+  display: inline-block;
+  margin-left: 350px;
+}
+
+
+#visualizationWrapper{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  right: 40px;
+  top:120px;
+  z-index: 1;
+}
+#visualizationWrapper p{
+  font-family: 'Nanum Brush Script';
+}
+.scollingDiv{
+  position: relative;
+  z-index: 1;
+}
+
+.scollingBig{
+  position:relative;
+}
+
+.title h1{
+  font-family: 'Bangers';
+  font-size: 3em;
+  top: 0%;
+  text-shadow: 2px 2px #880D0D;
+  margin: 3px;
+}
+.title h2{
+  font-family: 'Bangers';
+  font-size: 3em;
+  text-shadow: 2px 2px #880D0D;
+  margin:2px;
+  padding:  0  0  0 50px;
+}
+
+
+
+.pic{
+  position: absolute;
+  left:18%;
+  top:3%;
+  width: 390px;
+  height: 130px;
+  background: url("https://3.bp.blogspot.com/-5TrQypp0xhc/Ub5Omb4IHkI/AAAAAAAAALM/B_vUwXsqgic/s1600/super-arcade-pixels.png") no-repeat;
+  background-size: 140px auto;
+
+}
+
+.pic:hover{
+  /* transition: 0.3s; */
+  transform: rotate(20deg);
+  background: url("https://bit.ly/2Y7k8WB");
+  background-size: 105px auto;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+}
+
+#buttons{
+  display: flex;
+}
+
+.button{
+  flex-grow: 1;
+  cursor: pointer;
+  margin: 10px;
+  background-image: url('https://i.ibb.co/QYhZT2M/20200427-7f72f6eae17a4923b8eab4bb90265ca8.png');
+  background-repeat: no-repeat;
+  background-size: 60px auto;
+  width: 60px;
+  height: 70px;
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.button:hover p{
+  transition: 0.5s;
+  color: #020179;
+  text-shadow: 2px 2px #dd0303;
+}
+
+.button p{
+  font-family: 'Bangers';
+  pointer-events: none;
+  color: #dd0303;
+  text-shadow: 2px 2px #020179;
+  font-size: 20px;
+  background-color: white;
+}
+
+
+#buttonA{
+  right: 43%;
+  top: 0%;
+
+}
+
+#buttonB{
+  right: 34%;
+  top: 0%;
+}
+
+ #buttonC{
+  right: 24%;
+  top: 0%;
+  text-align: center;
+}
+
+#buttonD{
+  right: 16%;
+  top: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#buttonE{
+  right: 8%;
+  top: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#buttonF{
+  right: 0%;
+  top: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+.name{
+  position: sticky;
+}
+.stickyCircle p{
+  font-family: 'Nanum Brush Script';
+  font-size: 3em;
+  padding:  2em  0  0 8em;
+}
+.scollingDiv p{
+  font-family: 'Nanum Brush Script';
+  /* background-color: #247BA0;
+  opacity: 0.5; */
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+ .womanAndMan{
+   height: 500px;
+   width: 100%;
+ }
+ .girlAndBoy{
+   height: 500px;
+   width: 100%;
+ }
+ .MsAndMister{
+   height: 500px;
+   width: 100%;
+ }
+ .scollingDiv p{
+   font-size: 3em;
+ }
+ .tab1 {
+   display: inline-block;
+   margin-left: 140vh;
+ }
+ .queenAndKing{
+   height: 500px;
+   width: 100%;
+ }
+ .master{
+   height: 500px;
+   width: 100%;
+ }
+ .captain{
+   height: 500px;
+   width: 100%;
+ }
+
+
+ .tooltip {
+  position: absolute;
+  height: 200px;
+  width: 500px;
+  background-color:red;
+  text-align:center;
+  border-radius: 5px;
+  border: 1px solid black;
+  z-index: 100;
+  pointer-events: none;
+}
