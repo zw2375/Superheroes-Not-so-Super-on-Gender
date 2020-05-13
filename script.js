@@ -20,7 +20,7 @@ textBar.append("rect")
         .attr("x",0)
         .attr("y",0)
         .attr("height",100)
-        .attr("width",1200)
+        .attr("width",1400)
         .attr("fill","white")
         ;
 
