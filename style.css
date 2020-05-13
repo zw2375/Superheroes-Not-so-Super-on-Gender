@@ -19,6 +19,9 @@
 .step{
   z-index: -1;
   top:0;
+
+ width: 1450px;
+
 }
 .transToContext p{
   font-size: 70px;
