@@ -50,13 +50,15 @@ let a = 0;
 let maleNum = 0;
 let femaleNum = 0;
 let none = 0;
+
 //let time = 1000;
-femaleNumtxt = viz.append("text")
+femaleNumtxt = textBar.append("text")
         .attr("x",30)
         .attr("y",100)
         .attr("font-size",50)
         .attr("fill","#8B0101")
         .attr("font-family","Nanum Brush Script")
+        .attr("background-color","white")
         ;
 maleNumtxt = viz.append("text")
               .attr("x",30)
