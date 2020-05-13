@@ -52,7 +52,7 @@ let femaleNum = 0;
 let none = 0;
 
 //let time = 1000;
-femaleNumtxt = textBar.append("text")
+femaleNumtxt = viz.append("text")
         .attr("x",30)
         .attr("y",100)
         .attr("font-size",50)
