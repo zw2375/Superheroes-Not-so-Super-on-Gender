@@ -40,17 +40,27 @@ function visualizeAppearance(basicInfo){
 // femaleRed = getOccurrence(femaleEye,"red")
 // femaleViolet = getOccurrence(femaleEye,"violet")
 femaleEyeColorNum = []
-
+femaleColor = []
 for (var i = 0; i < femaleEye.length; i++) {
-  if (femaleEye[i] in femaleEyeColorNum) {
-    femaleEyeColorNum[femaleEye[i]]++
+  currentObject = {}
+  if (femaleColor.includes(femaleEye[i])) {
+     colorName = femaleEye[i]
+     for (var a = 0; a < femaleEyeColorNum.length; a++) {
+       if (femaleEyeColorNum[a].color == colorName){
+         femaleEyeColorNum[a].number ++
+       }
+     }
+
   }else {
-    femaleEyeColorNum[femaleEye[i]] = 1
+    femaleColor.push(femaleEye[i])
+    currentObject.color= femaleEye[i];
+    currentObject.number= 1
+    femaleEyeColorNum.push(currentObject)
   }
 }
 
 
-maleEyeColorNum = []
+maleEyeColorNum = {}
 
 for (var i = 0; i < maleEye.length; i++) {
   if (maleEye[i] in maleEyeColorNum) {
@@ -61,7 +71,7 @@ for (var i = 0; i < maleEye.length; i++) {
 }
 
 femaleEyeData = [1,5,76,15,43,3,1,2,4,2,3,4]
-femaleEyeData = [1,17,143,1,1,107,3,31,6,3,2,37,1,13,17]
+maleEyeData = [1,17,143,1,1,107,3,31,6,3,2,37,1,13,17]
 console.log(femaleEyeColorNum);
 console.log(maleEyeColorNum);
 
@@ -80,50 +90,53 @@ coloredCircle = femaleEyeGroups.append("circle")
                                   return rScale(d)
                                 })
                                 .attr("fill",chooseColor)
-                                ;
+                               ;
+
 
 
 function chooseColor(d,i) {
-  a = i
-  if (femaleEyeColorNum[a] == "amber"){
-    return "#FFC200";
-  }else if (femaleEyeColorNum[a] == "black") {
-    return "black";
-  }else if (femaleEyeColorNum[a] == "blue") {
-    return "#2F5980";
-  }else if (femaleEyeColorNum[a] == "brown") {
-    return "#85430B";
-  }else if (femaleEyeColorNum[a] == "green") {
-    return "#a8b461";
-  }else if (femaleEyeColorNum[a] == "hazal") {
-    return "#8E7618";
-  }else if (femaleEyeColorNum[a] == "indigo") {
-    return "#4B0082";
-  }else if (femaleEyeColorNum[a] == "purple") {
-    return "#783185";
-  }else if (femaleEyeColorNum[a] == "red") {
-    return "#e63946";
-  }else if (femaleEyeColorNum[a] == "voilet") {
-    return "#EE82EE";
-  }else if (femaleEyeColorNum[a] == "white") {
-    return "white";
-  }else if (femaleEyeColorNum[a] == "yellow") {
-    return "#e9c46a";
-  }else {
-    return "grey"
+  for (var i = 0; i < femaleEyeData.length; i++) {
+    if (femaleEyeColorNum[i] == "amber"){
+      return "#FFC200";
+    }else if (femaleEyeColorNum[i] == "black") {
+      return "black";
+    }else if (femaleEyeColorNum[i] == "blue") {
+      return "#2F5980";
+    }else if (femaleEyeColorNum[i] == "brown") {
+      return "#85430B";
+    }else if (femaleEyeColorNum[i] == "green") {
+      return "#a8b461";
+    }else if (femaleEyeColorNum[i] == "hazal") {
+      return "#8E7618";
+    }else if (femaleEyeColorNum[i] == "indigo") {
+      return "#4B0082";
+    }else if (femaleEyeColorNum[i] == "purple") {
+      return "#783185";
+    }else if (femaleEyeColorNum[i] == "red") {
+      return "#e63946";
+    }else if (femaleEyeColorNum[i] == "voilet") {
+      return "#EE82EE";
+    }else if (femaleEyeColorNum[i] == "white") {
+      return "white";
+    }else if (femaleEyeColorNum[i] == "yellow") {
+      return "#e9c46a";
+    }else {
+      return "grey"
+    }
   }
+
 }
 
 
 
 
 
-let simulation = d3.forceSimulation(femaleEyeData)
-     .force("x",d3.forceX(w/2))
-     .force("y",d3.forceY(680))
-     .force("manyBody",d3.forceManyBody().strength(-50))
-//      .on("tick",simulationRan)
-     ;
+// let simulation = d3.forceSimulation(femaleEyeData)
+//      .force("x",d3.forceX(w/2))
+//      .force("y",d3.forceY(680))
+//      .force("manyBody",d3.forceManyBody().strength(-50))
+// //      .on("tick",simulationRan)
+//      ;
 //
 // function simulationRan(){
 // //  console.log(basicInfo[0].x);
@@ -131,9 +144,4 @@ let simulation = d3.forceSimulation(femaleEyeData)
 //   .attr("transform",function(d){
 //     return "translate("+d.x+","+d.y+")"
 //   })
-// }
-
-
-
-
 }
