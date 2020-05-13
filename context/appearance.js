@@ -13,7 +13,7 @@ d3.json("heroes.json").then(visualizeAppearance);
 
 let rScale = d3.scaleLinear().domain([1, 143]).range([10, 150]);
 //    let yDomain = d3.extent(male, function(d){ return d.number });
-    let xScale = d3.scaleLinear().domain([0,19]).range([20, w]);
+    let xScale = d3.scaleLinear().domain([0,17]).range([20, w]);
     let xAxis = d3.axisBottom(xScale);
     let xAxisGroup = viz.append("g")
         .attr("class", "yaxisgroup")
@@ -78,6 +78,13 @@ for (var i = 0; i < maleEye.length; i++) {
     maleEyeColorNum.push(currentMaleObject)
   }
 }
+maleEyeColorNum.splice(4,1)
+maleEyeColorNum.splice(9,1)
+maleEyeColorNum.splice(11,1)
+maleEyeColorNum.splice(12,1)
+maleEyeColorNum.splice(12,1)
+
+
 console.log(maleEyeColorNum);
 // femaleEyeData = [1,5,76,15,43,3,1,2,4,2,3,4]
 // maleEyeData = [1,17,143,1,1,107,3,31,6,3,2,37,1,13,17]
@@ -229,6 +236,10 @@ function chooseFemaleColor(d,i) {
         return "white";
       }else if (maleEyeColorNum[a].color == "yellow") {
         return "#e9c46a";
+      }else if (maleEyeColorNum[a].color == "gold") {
+        return "#CFB53B";
+      }else if (maleEyeColorNum[a].color == "bown") {
+        return "#D2691E"
       }else {
         return "grey"
       }
