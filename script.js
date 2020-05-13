@@ -36,7 +36,7 @@ var container = viz.append("g").attr("class","lines")
 
   var lineData = [ { "x": 700,   "y": 670},  { "x": 100,  "y": 705},
                    { "x": 70,  "y": 605}, { "x": 100,  "y": 650},
-                   { "x": 1320,  "y": 700}, ];
+                   { "x": 1320,  "y": 800}, ];
 
 
   var lineFunction = d3.line()
@@ -88,9 +88,9 @@ var container = viz.append("g").attr("class","lines")
                             .attr("stroke-width", 6)
                             .attr("fill", "#070E3F")
                             ;
-  var lineData = [ { "x": 1390,   "y": 707},  { "x": 1300,  "y": 107},
-                  { "x": 1300,  "y": 202}, { "x": 1390,  "y": 560},
-                  { "x":1250, "y": 710}];
+  var lineData = [ { "x": 1490,   "y": 707},  { "x": 1400,  "y": 107},
+                  { "x": 1400,  "y": 202}, { "x": 1400,  "y": 560},
+                  { "x":1350, "y": 710}];
 
 
   var lineFunction = d3.line()

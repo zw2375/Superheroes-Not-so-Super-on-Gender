@@ -20,7 +20,7 @@
   z-index: -1;
   top:0;
 
- width: 1450px;
+ width: 1550px;
 
 }
 .transToContext p{
@@ -28,7 +28,7 @@
   margin: 140px;
   color:  #dd0303;
   text-shadow: 2px 2px #070E3F;
-  padding:  300px 0  0  0;
+  /* padding:  300px 0  0  0; */
   font-family: "Nanum Brush Script";
 
 }
