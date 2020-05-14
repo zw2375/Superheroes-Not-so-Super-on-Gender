@@ -1,46 +1,34 @@
+/*
+.image{
+  content: url(https://thumbs.gfycat.com/BlaringCoolGemsbuck-small.gif)
+} */
 
-.step h1{
-  font-size: 60px;
-  margin: 140px;
-  color:  #8B0101;
-  text-shadow: 2px 2px #070E3F;
-  font-family: "Nanum Brush Script";
-}
 
-.step p{
- font-size: 60px;
- margin: 140px;
- color:  #8B0101;
- padding:  500px 0  0  0;
- text-shadow: 2px 2px #070E3F;
- font-family: "Nanum Brush Script";
-
-}
 .step{
   z-index: -1;
   top:0;
-
- width: 1550px;
-
+  width: 1550px;
 }
-.transToContext p{
+
+.transToContext {
+  text-shadow: 5px 5px #070E3F;
+  font-family: 'Passero One';
   font-size: 70px;
-  margin: 140px;
-  color:  #dd0303;
-  text-shadow: 2px 2px #070E3F;
-  /* padding:  300px 0  0  0; */
-  font-family: "Nanum Brush Script";
-
-}
-
-.transToContext{
+  color:  #8B0101;
   position:absolute;
   z-index: 3;
+  padding:150px;
+}
+
+.transToContext:hover {
+  transition: 0.5s;
+  color: #070E3F;
+  text-shadow: 5px 5px #8B0101;
 }
 
 .blank{
   background-color: transparent;
-  padding:  500px 0  0  0;
+  padding:  900px 0  0  0;
 }
 article {
   position: relative;
@@ -55,6 +43,44 @@ figure.sticky{
   left :0;
 }
 .textBar{
-  text-shadow: 15px 15px #070E3F;
-  font-family: 'Bangers';
+  text-shadow: 10px 10px #070E3F;
+  font-family: 'Passero One';
+}
+.step{
+  text-shadow: 5px 5px #070E3F;
+  font-family: 'Passero One';
+  font-size: 70px;
+  color:  #8B0101;
+}
+.begin{
+  height: 500px;
+  width: 70%;
+  padding:150px;
+  padding-top: 50px;
+  /* background-color: black; */
+
+  top:0;
+}
+.question{
+    height: 500px;
+    width: 70%;
+    padding:150px;
+    /* background-color: black; */
+
+    top:0;
+}
+.answer{
+    height: 500px;
+    width: 70%;
+    padding:150px;
+}
+.assumption{
+    height: 500px;
+    width: 70%;
+    padding:150px;
+}
+.reason{
+    height: 500px;
+  width: 70%;
+  padding:150px;
 }

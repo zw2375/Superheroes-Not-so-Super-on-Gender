@@ -1,4 +1,4 @@
-let w = 1300;
+let w = 2000;
 let h = 1500;
 let xpadding = 50;
 let ypadding = 50;
@@ -70,14 +70,14 @@ function basicViz(basicInfo){
         ;
 
         //
-        textElement = viz.append("text")
-                .attr("x",w/2)
-                .attr("y",h/2)
-                .attr("font-size",50)
-                .attr("fill","white")
-                .attr("stroke","black")
-                .attr("class","IDcard")
-                ;
+        // textElement = viz.append("text")
+        //         .attr("x",w/2)
+        //         .attr("y",h/2)
+        //         .attr("font-size",50)
+        //         .attr("fill","white")
+        //         .attr("stroke","black")
+        //         .attr("class","IDcard")
+        //         ;
 
   femaleNumber =femaleCircleGroup.append("text")
         .text(femaleNum)

@@ -1,9 +1,101 @@
 let w = 1450;
-let h = 1500;
+let h = 1600;
 let xpadding = 100;
 let ypadding = 50;
 
+var string = "Hello there ! (please keep scrolling)";
+var str = string.split("");
+var el = document.getElementById('begin');
+(function animate() {
+str.length > 0 ? el.innerHTML += str.shift() : clearTimeout(running);
+var running = setTimeout(animate, 90);
+})();
 
+function updateText(){
+  var str = string.split("");
+  var el = document.getElementById(id);
+  (function animate() {
+  str.length > 0 ? el.innerHTML += str.shift() : clearTimeout(running);
+  var running = setTimeout(animate, 90);
+  })();
+}
+
+
+enterView({
+
+	selector: '.question',
+	enter: function(el) {
+    id  = "question";
+    string = "Quick question!";
+    string = "If I ask you to quickly come up with a superhero that you are familiar with.Who do you think of?";
+		updateText();
+	},
+	exit: function(el) {
+    string = ""
+	},
+	offset: 0.5, // enter at middle of viewport
+	// once: true, // trigger just once
+});
+
+enterView({
+
+	selector: '.answer',
+	enter: function(el) {
+    id  = "answer";
+    string = "Superman? Batman? Iron Man? Spiderman?";
+		updateText();
+	},
+	exit: function(el) {
+    string = ""
+	},
+	offset: 0.5, // enter at middle of viewport
+	// once: true, // trigger just once
+});
+
+enterView({
+
+	selector: '.assumption',
+	enter: function(el) {
+    id  = "assumption";
+    string = "No matter who do you think of,I am more than 70% sure it's a male character.";
+		updateText();
+	},
+	exit: function(el) {
+    string = ""
+	},
+	offset: 0.5, // enter at middle of viewport
+	// once: true, // trigger just once
+});
+
+enterView({
+
+	selector: '.reason',
+	enter: function(el) {
+    id  = "reason";
+    string = "Why?Becase only 26.7 percent of all DC and Marvel characters are female. Surprise?Superhero actually are not that super when it comes to gender.";
+		updateText();
+	},
+	exit: function(el) {
+    string = ""
+	},
+	offset: 0.5, // enter at middle of viewport
+	// once: true, // trigger just once
+});
+
+enterView({
+
+	selector: '.transToContext',
+	enter: function(el) {
+    id  = "transToContext";
+    string = "Let’s take a detailed look AT that!";
+		updateText();
+	},
+	exit: function(el) {
+    string = ""
+	},
+	offset: 0.5, // enter at middle of viewport
+	// once: true, // trigger just once
+});
 
 //put the svg onto the page:
 let viz = d3.select(".sticky")
@@ -16,10 +108,11 @@ var textBar = viz.append("g")
                   .attr("class","textBar")
                   ;
 
+
 textBar.append("rect")
         .attr("x",0)
         .attr("y",0)
-        .attr("height",100)
+        .attr("height",200)
         .attr("width",1400)
         .attr("fill","white")
         ;
@@ -34,9 +127,26 @@ textBar.append("text")
 
 var container = viz.append("g").attr("class","lines")
 
-  var lineData = [ { "x": 700,   "y": 670},  { "x": 100,  "y": 705},
+container.append("rect")
+        .attr("x",0)
+        .attr("y",700)
+        .attr("height",200)
+        .attr("width",1400)
+        .attr("fill","white")
+        ;
+
+viz.append("image")
+          .attr("x",1000)
+          .attr("y",70)
+          .attr("width",500)
+          .attr("height",650)
+          .attr("xlink:href","https://thumbs.gfycat.com/BlaringCoolGemsbuck-small.gif")
+          ;
+
+
+var lineData = [ { "x": 700,   "y": 590},  { "x": 100,  "y": 705},
                    { "x": 70,  "y": 605}, { "x": 100,  "y": 650},
-                   { "x": 1320,  "y": 800}, ];
+                   { "x": 1620,  "y": 700}, ];
 
 
   var lineFunction = d3.line()
