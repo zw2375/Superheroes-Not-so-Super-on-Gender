@@ -142,17 +142,34 @@ Bangers.stickHeader{
   vertical-align: middle;
 }
 #heightButton{
-  right:10%;
+  right:20%;
   top:0%;
-  background-color: pink;
+  /* background-color: pink; */
+}
+
+#heightButton p{
+  font-family:"Kranky";
+  font-size:4em;
+  font-weight:bold;
+  color:#8B0101;
+  text-shadow: 4px 4px #020179;
 }
 
 #weightButton{
-  right:10%;
-  top:10%;
-  background-color: blue;
+  right:20%;
+  top:15%;
+  /* background-color: blue; */
 }
-#BMI{
-  right:10%;
+
+#weightButton p{
+  font-family:"Kranky";
+  font-size:4em;
+  font-weight:bold;
+  color:#8B0101;
+  text-shadow: 4px 4px #020179;
+}
+
+/* #BMI{
+  right:20%;
   top:20%;
-}
+} */
