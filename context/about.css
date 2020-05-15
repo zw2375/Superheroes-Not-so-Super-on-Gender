@@ -136,3 +136,29 @@
   text-align: center;
   vertical-align: middle;
 }
+.introTitle{
+  font-family:"Kranky";
+  font-size:4em;
+  font-weight:bold;
+  color:#8B0101;
+  text-shadow: 4px 4px #020179;
+  width: 1500px;
+  height:100px;
+}
+.intro{
+  font-family:"Kranky";
+  font-size:2em;
+  color:#070E3F;
+  width: 1500px;
+  height:170px;
+  margin: 40px;
+}
+.introTitle2{
+  font-family:"Kranky";
+  font-size:4em;
+  font-weight:bold;
+  color:#8B0101;
+  text-shadow: 4px 4px #020179;
+  width: 1500px;
+  height:100px;
+}
