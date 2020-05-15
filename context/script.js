@@ -241,7 +241,6 @@ enter = setInterval(enterHero,1)
 //                                    .duration(500)
 //                                    .attr("r",100)
 //                                    .attr("fill","url(#image"+i+")")
-//
 //                                    ;
 //                              //   tooltip.style("visibility", "visible");
 //                                  textElement.text(d.name)

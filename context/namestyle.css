@@ -18,21 +18,21 @@
   align-items: center;   */
 }
 
-.stickyDiv p{
+/* .stickyDiv p{
   position: absolute;
   text-align: center;
   color: black;
   right:400px;
   font-size: 70px;
-  font-family: 'Bangers';
-}
+  font-family: 'Passero One';
+} */
 
 .tab {
   display: inline-block;
   margin-left: 350px;
 }
 
-
+'Passero One'
 #visualizationWrapper{
   position: absolute;
   width: 100%;
@@ -121,6 +121,7 @@
   text-shadow: 2px 2px #020179;
   font-size: 20px;
   background-color: white;
+   font-weight: bold;
 }
 
 
@@ -148,6 +149,18 @@
   vertical-align: middle;
 }
 
+#buttonD h1{
+  visibility: hidden;
+  color: #dd0303;
+  text-shadow: 2px 2px #020179;
+  font-size: 20px;
+  font-family: 'Bangers';
+}
+
+#buttonD:hover h1{
+  visibility:visible;
+}
+
 #buttonE{
   right: 8%;
   top: 0%;
@@ -165,40 +178,33 @@
   position: sticky;
 }
 .stickyCircle p{
-  font-family: 'Nanum Brush Script';
+  font-family: "Kranky";
   font-size: 3em;
   padding:  2em  0  0 8em;
 }
 .scollingDiv p{
-  font-family: 'Nanum Brush Script';
+  font-family: "Kranky";
   /* background-color: #247BA0;
   opacity: 0.5; */
 }
-.tooltip {
+
+/* .tooltip {
   position: relative;
   display: inline-block;
   border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
 
 /* Tooltip text */
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
+/* .tooltip {
+  /* visibility: hidden; */
+  /* width: 120px;
   color: #fff;
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-
-  /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
-}
+} */
 
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
  .womanAndMan{
    height: 500px;
    width: 100%;
@@ -216,6 +222,15 @@
  }
  .tab1 {
    display: inline-block;
+   margin-left: 135vh;
+ }
+
+ .tab2 {
+   display: inline-block;
+   margin-left: 145vh;
+ }
+ .tab3 {
+   display: inline-block;
    margin-left: 140vh;
  }
  .queenAndKing{
@@ -232,7 +247,7 @@
  }
 
 
- .tooltip {
+ /* .tooltip {
   position: absolute;
   height: 200px;
   width: 500px;
@@ -242,4 +257,10 @@
   border: 1px solid black;
   z-index: 100;
   pointer-events: none;
+} */
+.red{
+  text-shadow: 4px 4px #070E3F;
+}
+.blue{
+  text-shadow: 3px 3px #8B0101;
 }

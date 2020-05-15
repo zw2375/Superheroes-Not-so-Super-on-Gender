@@ -1,5 +1,5 @@
 let w = 1500;
-let h = 1500;
+let h = 1200;
 
 
 // put the svg onto the page:
@@ -35,6 +35,7 @@ function visualizeAppearance(basicInfo){
 
  }
 
+color = '';
 
 
 femaleEyeColorNum = [];
@@ -78,40 +79,50 @@ for (var i = 0; i < maleEye.length; i++) {
     maleEyeColorNum.push(currentMaleObject)
   }
 }
-maleEyeColorNum.splice(4,1)
-maleEyeColorNum.splice(9,1)
-maleEyeColorNum.splice(11,1)
+femaleEyeColorNum.splice(10,1)
+femaleEyeColorNum.splice(12,1)
+femaleEyeColorNum[1].number +=2
+maleEyeColorNum.splice(10,1)
 maleEyeColorNum.splice(12,1)
-maleEyeColorNum.splice(12,1)
+maleEyeColorNum.splice(13,1)
+maleEyeColorNum.splice(13,1)
+femaleEyeColorNum[4].number +=1
 
-
-console.log(maleEyeColorNum);
-// femaleEyeData = [1,5,76,15,43,3,1,2,4,2,3,4]
-// maleEyeData = [1,17,143,1,1,107,3,31,6,3,2,37,1,13,17]
-// console.log(femaleEyeColorNum);
-// console.log(maleEyeColorNum);
 
 let femaleEyeGroups =  viz.selectAll(".femaleEyeGroups").data(femaleEyeColorNum).enter()
                                                                               .append("g")
-// var color = "here"                                                                  //.attr("class","femaleEyeGroups");
-//
-//   // textElement = viz.append("text")
-//   //         .attr("x",100)
-//   //         .attr("y",200)
-//   //         .attr("font-size",50)
-//   //         .attr("fill","black")
-//   //         .text(color)
-//   //         ;
+                                                                              .attr("class","femaleEyeGroups")
+                                                                              ;
+
 viz.append("text")
-    .attr("x",200)
+    .attr("x",100)
     .attr("y",200)
     .text("Female characters' Eye color")
-    .attr("font-family","Nanum Brush Script")
-    .attr("font-size","7em")
-  //  .attr("fill","#F25F5C")
+    .attr("font-family","Kranky")
+    .attr("font-size","2.5em")
+    .attr("font-weight","bold")
     ;
 
-coloredCircle = femaleEyeGroups.append("circle")
+    viz.append("text")
+        .attr("x",850)
+        .attr("y",200)
+        .text("Male characters' Eye color")
+        .attr("font-family","Kranky")
+        .attr("font-size","2.5em")
+        .attr("font-weight","bold")
+        ;
+
+currentColor= viz.append("text")
+                  .attr("x",100)
+                  .attr("y",100)
+                  .text("Please hover on the circles to see more")
+                  .attr("font-family","Kranky")
+                  .attr("font-size","2em")
+            //      .attr("fill","#8B0101")
+                  .attr("class","currentColor")
+                  ;
+
+coloredFemaleCircle = femaleEyeGroups.append("circle")
                                 .attr("cx",function(d,i){
                                   return xScale(i) +100
                                 })
@@ -127,11 +138,45 @@ coloredCircle = femaleEyeGroups.append("circle")
                                     return "transparent"
                                   }
                                 })
-                                // .on("mouseover", function(d,i){
-                                //   color = d.color
-                                // })
-                               ;
+                                .on("mouseover", function(d,i){
+                                  d3.select(this)
+                                    .transition()
+                                    .duration(500)
+                                    .attr("r",rScale(d.number)+10)
+                                    ;
 
+                                 let mouseInSVG = d3.mouse(viz.node());
+                                      currentColor.transition()
+                                                  .duration(1000)
+                                                  .text(d.color + ":"+ d.number)
+                                                  .attr("x",mouseInSVG[0])
+                                                  .attr("y",mouseInSVG[1])
+                                                //  .attr("fill","#8B0101")
+                                                   ;
+                                  })
+                                  // .on("mousemove", function(d,i){
+                                  //
+                                  //  let mouseInSVG = d3.mouse(viz.node());
+                                  //       currentColor.text(d.color + ":"+ d.number)
+                                  //                   .transition()
+                                  //                   .attr("x",mouseInSVG[0])
+                                  //                   .attr("y",mouseInSVG[1])
+                                  //                   ;
+                                  //   })
+
+                                  .on("mouseout",function(d,i){
+                                    d3.select(this)
+                                      .transition()
+                                      .duration(500)
+                                      .attr("r",rScale(d.number))
+                                      ;
+                                    currentColor.text("");
+                                  })
+                                 ;
+
+
+
+console.log(femaleEyeColorNum);
 
 
 function chooseFemaleColor(d,i) {
@@ -146,22 +191,23 @@ function chooseFemaleColor(d,i) {
       return "#85430B";
     }else if (femaleEyeColorNum[a].color == "green") {
       return "#a8b461";
-    }else if (femaleEyeColorNum[a].color == "hazal") {
+    }else if (femaleEyeColorNum[a].color == "hazel") {
       return "#8E7618";
     }else if (femaleEyeColorNum[a].color == "indigo") {
       return "#4B0082";
     }else if (femaleEyeColorNum[a].color == "purple") {
       return "#783185";
     }else if (femaleEyeColorNum[a].color == "red") {
-      return "#e63946";
-    }else if (femaleEyeColorNum[a].color == "voilet") {
+      return "#CC221F";
+    }else if (femaleEyeColorNum[a].color == "violet") {
       return "#EE82EE";
     }else if (femaleEyeColorNum[a].color == "white") {
       return "white";
-    }else if (femaleEyeColorNum[a].color == "yellow"||"yellow (without irises)"||"yellow / blue") {
+    }else if (femaleEyeColorNum[a].color == "yellow") {
       return "#e9c46a";
-    }else {
-      return "gray"
+    }else  {
+
+      return "#805E7B";
     }
   }
 
@@ -169,47 +215,69 @@ function chooseFemaleColor(d,i) {
   let maleEyeGroups =  viz.selectAll(".maleEyeGroups").data(maleEyeColorNum).enter()
                                                                                 .append("g")
                                                                                 .attr("class","maleEyeGroups");
-// var color = "here"
+  currentMaleColor= viz.append("text")
+                    .attr("x",800)
+                    .attr("y",100)
+                    .text("Please hover on the circles to see more")
+                    .attr("font-family","Kranky")
+                    .attr("font-size","2em")
+                  //  .attr("fill","#070E3F")
+                    .attr("class","currentColor")
+                    ;
+
+
+  coloredMaleCircle =maleEyeGroups.append("circle")
+                                  .attr("cx",function(d,i){
+                                    return xScale(i) +100
+                                  })
+                                  .attr("cy",300)
+                                   .attr("r",function(d,i){
+                                    return rScale(d.number)
+                                  })
+                                  .attr("fill",chooseMaleColor)
+                                  .attr("stroke",function(d,i){
+                                    if (d.color == "white") {
+                                      return "black"
+                                    }else {
+                                      return "transparent"
+                                    }
+                                  })
+                                  .on("mouseover", function(d,i){
+                                    d3.select(this)
+                                      .transition()
+                                      .duration(500)
+                                      .attr("r",rScale(d.number)+10)
+                                      ;
+
+                                   let mouseInSVG = d3.mouse(viz.node());
+                                        currentMaleColor.transition()
+                                                    .duration(1000)
+                                                    .text(d.color + ":"+ d.number)
+                                                    .attr("x",mouseInSVG[0])
+                                                    .attr("y",mouseInSVG[1])
+
+                                                     ;
+                                    })
+                                    .on("mousemove", function(d,i){
+
+                                     let mouseInSVG = d3.mouse(viz.node());
+                                          currentMaleColor.text(d.color + ":"+ d.number)
+                                                      .transition()
+                                                      .attr("x",mouseInSVG[0])
+                                                      .attr("y",mouseInSVG[1])
+                                                      ;
+                                      })
+
+                                    .on("mouseout",function(d,i){
+                                      d3.select(this)
+                                        .transition()
+                                        .duration(500)
+                                        .attr("r",rScale(d.number))
+                                        ;
+                                      currentMaleColor.text("");
+                                    })
+                                   ;
   //
-  //   // textElement = viz.append("text")
-  //   //         .attr("x",100)
-  //   //         .attr("y",200)
-  //   //         .attr("font-size",50)
-  //   //         .attr("fill","black")
-  //   //         .text(color)
-  //   //         ;
-  viz.append("text")
-      .attr("x",200)
-      .attr("y",500)
-      .text("Male characters' Eye color")
-      .attr("font-family","Nanum Brush Script")
-      .attr("font-size","7em")
-    //  .attr("fill","#F25F5C")
-      ;
-
-  maleEyeGroups.append("circle")
-                  .attr("cx",function(d,i){
-                    return xScale(i) +100
-                  })
-                  .attr("cy",700)
-                   .attr("r",function(d,i){
-                    return rScale(d.number)
-                  })
-                  .attr("fill",chooseMaleColor)
-                  .attr("stroke",function(d,i){
-                    if (d.color == "white") {
-                      return "black"
-                    }else {
-                      return "transparent"
-                    }
-                  })
-                  // .on("mouseover", function(d,i){
-                  //   color = d.color
-                  // })
-                 ;
-
-
-
   function chooseMaleColor(d,i) {
       a = i
       if (maleEyeColorNum[a].color == "amber"){
@@ -222,7 +290,7 @@ function chooseFemaleColor(d,i) {
         return "#85430B";
       }else if (maleEyeColorNum[a].color == "green") {
         return "#a8b461";
-      }else if (maleEyeColorNum[a].color == "hazal") {
+      }else if (maleEyeColorNum[a].color == "hazel") {
         return "#8E7618";
       }else if (maleEyeColorNum[a].color == "indigo") {
         return "#4B0082";
@@ -240,22 +308,74 @@ function chooseFemaleColor(d,i) {
         return "#CFB53B";
       }else if (maleEyeColorNum[a].color == "bown") {
         return "#D2691E"
-      }else {
+      }else if (maleEyeColorNum[a].color == "grey") {
         return "grey"
+      }else if (maleEyeColorNum[a].color == "silver") {
+        return "#C0C0C0"
+      }else {
+          console.log(i);
+        return "#805E7B"
       }
     }
-//  let simulation = d3.forceSimulation(femaleEyeData)
-//      // .force("x",d3.forceX(w/2))
-//      // .force("y",d3.forceY(680))
-//      .force("manyBody",d3.forceManyBody().strength(-50))
-// //      .on("tick",simulationRan)
-//      ;
-//
-// function simulationRan(){
-// //  console.log(basicInfo[0].x);
-//   viz.selectAll(".femaleEyeGroups")
-//   .attr("transform",function(d){
-//     return "translate("+d.x+","+d.y+")"
-//   })
-// }
+console.log(maleEyeColorNum);
+ let simulation = d3.forceSimulation(femaleEyeColorNum)
+           .force("forceX",d3.forceX(400))
+           .force("forceY",d3.forceY(580))
+        //   .force("manyBody",d3.forceManyBody().strength(-10))
+  //        .force('charge', d3.forceManyBody().strength(5))
+          .force('center', d3.forceCenter(300, 500))
+          .force("collide",d3.forceCollide().radius(function(d){
+            return rScale(d.number) +3
+            }))
+          .on("tick",femaleSimulationRan)
+          ;
+
+function femaleSimulationRan(){
+  // console.log(femaleEyeColorNum[0].x);
+  // viz.selectAll(".femaleEyeGroups")
+  // .attr("transform",function(d){
+  //   return "translate("+d.x+","+d.y+")"
+  // });
+
+  coloredFemaleCircle
+      .attr("cx",function(d,i){
+        return d.x
+      })
+      .attr("cy",function(d,i){
+        return d.y
+      })
+      ;
+  }
+
+
+   let simulation2 = d3.forceSimulation(maleEyeColorNum)
+             .force("forceX",d3.forceX(400))
+             .force("forceY",d3.forceY(580))
+          //   .force("manyBody",d3.forceManyBody().strength(-10))
+    //        .force('charge', d3.forceManyBody().strength(5))
+            .force('center', d3.forceCenter(1200, 500))
+            .force("collide",d3.forceCollide().radius(function(d){
+              return rScale(d.number) +3
+              }))
+            .on("tick",simulationRan)
+            ;
+
+  function simulationRan(){
+    // console.log(femaleEyeColorNum[0].x);
+    // viz.selectAll(".femaleEyeGroups")
+    // .attr("transform",function(d){
+    //   return "translate("+d.x+","+d.y+")"
+    // });
+
+    coloredMaleCircle
+        .attr("cx",function(d,i){
+          return d.x
+        })
+        .attr("cy",function(d,i){
+          return d.y
+        })
+        ;
+    }
+
+
 }

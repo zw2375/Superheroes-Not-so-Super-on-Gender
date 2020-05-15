@@ -1,4 +1,4 @@
-let w = 2000;
+let w = 1500;
 let h = 1500;
 let xpadding = 50;
 let ypadding = 50;
@@ -44,27 +44,64 @@ function basicViz(basicInfo){
  let radiusformale = 1;
  let blue = "#020179";
  let red = "#dd0303";
- let color = blue;
  let femaleNum = "0";
  let maleNum = "0";
- let femalename = '';
- let malename ='';
+ let currentFemaleData = [];
+ let  currentMaleData =[];
+ // var tooltip = viz.append("div")
+ //     // .style("position", "absolute")
+ //     // .style("visibility", "hidden")
+ //     .text("I'm a circle!")
+ //     .attr("x",300)
+ //     .attr("y",300)
+ //     .attr("class","tooltip")
+ //     ;
 
- var tooltip = viz.append("div")
-     .style("position", "absolute")
-     .style("visibility", "hidden")
-     .text("I'm a circle!")
-     ;
+// viz.selectAll(".tooltip").append("text")
+//                           .attr("x",0)
+//                           .attr("y",0)
+//                           .text("This is a toolti")
 
+viz.append("text")
+    .attr("x",400)
+    .attr("y",200)
+    .text("Female")
+    .attr("font-family","Kranky")
+    .attr("font-size","3em")
+    .attr("font-weight","bold")
+    .attr("fill","#8B0101")
+    .attr("class","red")
+    ;
+
+viz.append("text")
+    .attr("x",900)
+    .attr("y",200)
+    .text("Male")
+    .attr("font-family","Kranky")
+    .attr("font-size","3em")
+    .attr("font-weight","bold")
+    .attr("fill","#070E3F")
+    .attr("class","blue")
+    ;
+
+let nameIntro = viz.append("text")
+                  .attr("x",100)
+                  .attr("y",100)
+                  .text("Please scroll to check how gender-specific words are adopted in female and male characters")
+                  .attr("font-family","Kranky")
+                  .attr("font-size","2em")
+                //  .attr("font-weight","bold")
+                  ;
 
   let femaleCircleGroup= viz.append("g")
                              .attr("class","femaleCircle");
+
   let maleCircleGroup= viz.append("g")
-                            .attr("class","maleCircle");;
+                            .attr("class","maleCircle");
 
   femaleCircle = femaleCircleGroup.append("circle")
         .attr("cx",450)
-        .attr("cy",300)
+        .attr("cy",400)
         .attr("r",120)
         .attr("class","femaleCircle")
         ;
@@ -80,27 +117,39 @@ function basicViz(basicInfo){
         //         ;
 
   femaleNumber =femaleCircleGroup.append("text")
-        .text(femaleNum)
+    //    .text(femaleNum)
         .attr("x",440)
-        .attr("y",340)
+        .attr("y",420)
         .attr("fill","white")
-        .attr("font-family","Nanum Brush Script")
-        .attr("font-size","7em")
+        .attr("font-family","Kranky")
+        .attr("font-size","3em")
         .attr("class","femaleCircle")
         ;
-femaleName = femaleCircleGroup.append("text")
-      .text(femalename)
-      .attr("x",100)
-      .attr("y",480)
-  //    .attr("opacity",0)
-      .attr("fill",red)
-      .attr("font-family","Nanum Brush Script")
-      .attr("font-size","2em")
-      .attr("class","femaleCircle")
-      ;
+
+
+
+
+enteringFemaleNameForPage =  viz.selectAll(".femaleTexts").data(currentFemaleData).enter()
+                          .append("text")
+                           .text(function(d,i){
+                             return d
+                           })
+                           .attr("x",290)
+                           .attr("y",function(d,i){
+                             return i*20+600
+                           })
+                          .attr("fill",red)
+                          .attr("font-family","Kranky")
+                          .attr("font-size","2em")
+                          .attr("class","femaleTexts")
+                          ;
+
+
+
+
   maleCircle =maleCircleGroup.append("circle")
         .attr("cx",950)
-        .attr("cy",300)
+        .attr("cy",400)
         .attr("r", 120)
         .attr("class","maleCircle")
         ;
@@ -108,54 +157,74 @@ femaleName = femaleCircleGroup.append("text")
   maleNumber =maleCircleGroup.append("text")
     .text(maleNum)
     .attr("x",940)
-    .attr("y",340)
+    .attr("y",420)
     .attr("fill","white")
-    .attr("font-family","Nanum Brush Script")
-    .attr("font-size","7em")
+    .attr("font-family","Kranky")
+    .attr("font-size","3em")
     .attr("class","maleCircle")
     ;
 
-    maleName = femaleCircleGroup.append("text")
-          .text(malename)
-          .attr("x",500)
-          .attr("y",540)
-    //      .attr("opacity",0)
-          .attr("fill",blue)
-          .attr("font-family","Nanum Brush Script")
-          .attr("font-size","2em")
-          .attr("class","femaleCircle")
-
-
+  enteringMaleNameForPage =  viz.selectAll(".maleTexts").data(currentMaleData).enter()
+                            .append("text")
+                             .text(function(d,i){
+                               return d
+                             })
+                             .attr("x",390)
+                             .attr("y",function(d,i){
+                               return i*20+600
+                             })
+                            .attr("fill",red)
+                            .attr("font-family","Kranky")
+                            .attr("font-size","2em")
+                            .attr("class","maleTexts")
+                            ;
 
 function updateCircle(){
 
-        femaleCircle
-    		 .transition()
-         .duration(1000)
-    			.attr("r", rScale(radiusforfemale))
-    			.attr("fill", red)
-    	    ;
+  // femaleEnteringElements = femaleNameForPage.enter();
+  // femaleExitingElements = femaleNameForPage.exit();
+  femaleNameForPage = viz.selectAll(".femaleTexts").data(currentFemaleData)
+                                                    .text(function(d,i){
+                                                     return d
+                                                   })
+                                                     .attr("x",200)
+                                                     .attr("y",function(d,i){
+                                                       return i*30+600
+                                                     });
 
-          femaleCircleGroup.on("mouseover",function(){
+enteringFemaleNameForPage = femaleNameForPage.enter();
 
-            tooltip.style("visibility","visible")
+enteringFemaleNameForPage.append("text")
+                        .text(function(d,i){
+                         return d
+                          })
+                         .attr("x",390)
+                         .attr("y",function(d,i){
+                           return i*25+500
+                         })
+                        .attr("fill",red)
+                        .attr("font-family","Kranky")
+                        .attr("font-size","30px")
+                        .attr("class","femaleTexts")
+                        ;
 
-          })
+existingFemaleNameForPage = femaleNameForPage.exit();
+existingFemaleNameForPage.remove();
+
+      femaleCircle
+  		 .transition()
+       .duration(1000)
+  			.attr("r", rScale(radiusforfemale))
+  			.attr("fill", red)
+  	    ;
 
         femaleNumber
-        .transition()
-        .duration(2000)
-        .text(femaleNum)
-        ;
+          .transition()
+          .duration(2000)
+          .text(femaleNum)
+          ;
 
-        femaleName
-        .transition()
-        .duration(1000)
-        .text(femalename)
-        // .on("mouseover", functin(){
-        //   femaleName.attr("opacity",1)
-        // })
-        ;
+
 
         maleCircle
   			  .transition()
@@ -170,16 +239,37 @@ function updateCircle(){
           .text(maleNum)
           ;
           //
-          maleName
-          .transition()
-          .duration(1000)
-          .text(malename)
-          ;
+      maleNameForPage = viz.selectAll(".maleTexts").data(currentMaleData)
+                                                        .text(function(d,i){
+                                                         return d
+                                                       })
+                                                         .attr("x",800)
+                                                         .attr("y",function(d,i){
+                                                           return i*30+600
+                                                         });
+      enteringMaleNameForPage = maleNameForPage.enter();
+
+      enteringMaleNameForPage.append("text")
+                            .text(function(d,i){
+                             return d
+                              })
+                             .attr("x",1100)
+                             .attr("y",function(d,i){
+                               return i*25+500
+                             })
+                            .attr("fill",blue)
+                            .attr("font-family","Kranky")
+                            .attr("font-size","30px")
+                            .attr("class","maleTexts")
+                            ;
+
+      existingMaleNameForPage = maleNameForPage.exit();
+      existingMaleNameForPage.remove();
       }
 
-updateCircle()
+ updateCircle()
 
-
+//
 enterView({
 	selector: '.womanAndMan',
 	enter: function(el) {
@@ -188,8 +278,10 @@ enterView({
     radiusformale = 19;
     femaleNum = "5"
     maleNum = "19"
-    femalename = woman.toString();
-    malename = man.toString();
+    // newFemaleX = 100;
+    // newFemaleY = 600;
+    currentFemaleData = woman;
+    currentMaleData = man;
 		updateCircle();
 	},
 	exit: function(el) {
@@ -197,14 +289,14 @@ enterView({
     radiusformale = 0;
     femaleNum = "0"
      maleNum = "0"
-     femalename = '';
-     malename = '';
+     currentFemaleData = [];
+     currentMaleData = [];
 		updateCircle();
 	},
 	offset: 0.5, // enter at middle of viewport
 	// once: true, // trigger just once
 });
-
+//
 enterView({
 	selector: '.girlAndBoy',
 	enter: function(el) {
@@ -212,8 +304,8 @@ enterView({
     radiusformale = 4;
     femaleNum = "11"
     maleNum = "4"
-    femalename = girl.toString();
-    malename = boy.toString();
+    currentFemaleData = girl;
+    currentMaleData = boy;
 		updateCircle();
 	},
 	exit: function(el) {
@@ -221,8 +313,8 @@ enterView({
     radiusformale = 0;
     femaleNum = "0"
     maleNum = "0"
-    femalename = '';
-    malename = '';
+    currentFemaleData =[];
+    currentMaleData = [];
 		updateCircle();
 	},
 	offset: 0.5, // enter at middle of viewport
@@ -236,8 +328,8 @@ enterView({
     radiusformale = 6;
     femaleNum = "1"
     maleNum = "6"
-    femalename = miss.toString();
-    malename = mister.toString();
+    currentFemaleData = miss;
+    currentMaleData = mister;
 		updateCircle();
 	},
 	exit: function(el) {
@@ -245,8 +337,8 @@ enterView({
     radiusformale = 0;
     femaleNum = "0"
     maleNum = "0"
-    femalename = '';
-    malename = '';
+    currentFemaleData = [];
+    currentMaleData = [];
 	},
 	offset: 0.5, // enter at middle of viewport
 	// once: true, // trigger just once
@@ -262,8 +354,8 @@ enterView({
     femaleNum = "0"
     maleNum = "2"
   //  femalename ='';
-    femalename = ""
-    malename = king.toString();
+  currentFemaleData = [];
+  currentMaleData = king;
 		updateCircle();
 	},
 	exit: function(el) {
@@ -271,8 +363,8 @@ enterView({
     radiusformale = 0;
     femaleNum = "0"
     maleNum = "0"
-    femalename = '';
-    malename = '';
+    currentFemaleData = [];
+    currentMaleData = [];
 		updateCircle();
 	},
 	offset: 0.5, // enter at middle of viewport
@@ -286,8 +378,8 @@ enterView({
     radiusformale = 1;
     femaleNum = "0"
     maleNum = "1"
-    femalename = ""
-    malename = master.toString();
+    currentFemaleData = [];
+    currentMaleData = master;
 		updateCircle();
 	},
 	exit: function(el) {
@@ -295,8 +387,8 @@ enterView({
     radiusformale = 0;
     femaleNum = "0"
     maleNum = "0"
-    femalename = '';
-    malename = '';
+    currentFemaleData = [];
+    currentMaleData = [];
 		updateCircle();
 	},
 	offset: 0.5, // enter at middle of viewport
@@ -314,8 +406,8 @@ enterView({
       return captain.filter(el => el !== element);
     }
     captain = remove(captain, "x");
-    captain.toString();
-    malename = captain.toString();
+    currentFemaleData = ["Captain Marvel"];
+    currentMaleData = captain;
 		updateCircle();
 	},
 	exit: function(el) {
@@ -323,8 +415,8 @@ enterView({
     radiusformale = 0;
     femaleNum = "0"
     maleNum = "0"
-    femalename = '';
-    malename = '';
+    currentFemaleData = [];
+    currentMaleData = [];
 		updateCircle();
 	},
 	offset: 0.5, // enter at middle of viewport

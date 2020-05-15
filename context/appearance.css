@@ -1,4 +1,4 @@
-.stickHeader{
+Bangers.stickHeader{
   position: sticky;
   z-index: 2;
   top:0;
@@ -104,6 +104,20 @@
   vertical-align: middle;
 }
 
+#buttonD h1{
+  visibility: hidden;
+  color: #dd0303;
+  text-shadow: 2px 2px #020179;
+  font-size: 20px;
+  font-family: 'Bangers';
+}
+
+#buttonD:hover h1{
+  visibility:visible;
+}
+
+
+
 #buttonE{
   right: 8%;
   top: 0%;
@@ -124,4 +138,7 @@
   font-family: 'Bangers';
   font-size: 3em;
   padding:  2em  0  0 8em;
+}
+.currentColor{
+  z-index: 2;
 }
