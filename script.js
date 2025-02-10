@@ -140,7 +140,7 @@ viz.append("image")
           .attr("y",70)
           // .attr("width",700)
           .attr("height",450)
-          .attr("href","/spider2.gif")
+          .attr("href","spider2.gif")
           // .attr("xlink:href","https://thumbs.gfycat.com/BlaringCoolGemsbuck-small.gif")
           ;
 
