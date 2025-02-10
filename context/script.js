@@ -1,17 +1,22 @@
-let w = 1450;
-let h = 1500;
+let w = window.innerWidth - 50;  // Fit width to screen
+let h = window.innerHeight - 100; // Fit height to screen
 let xpadding = 100;
-let ypadding = 50;
+let ypadding = 0;
 
 
 
 //put the svg onto the page:
+// let viz = d3.select("#container")
+//   .append("svg")
+//     .style("width", w)
+//     .style("height", h)
+// ;
 let viz = d3.select("#container")
-  .append("svg")
-    .style("width", w)
-    .style("height", h)
-;
-
+    .append("svg")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", `0 0 ${w} ${h}`)
+    .attr("preserveAspectRatio", "xMidYMid meet");
 d3.json("heroes.json").then(basicViz);
 
 
@@ -23,15 +28,30 @@ function basicViz(basicInfo){
   console.log(basicInfo);
 var currentData =[]
 let simulation = d3.forceSimulation(currentData)
-     .force("forceX",d3.forceX(w/2))
-     .force("forceY",d3.forceY(680))
-     .force("manyBody",d3.forceManyBody().strength(-50))
-  //.force("center",d3.forceCenter([w/2,h/2]))
-  //  .force("collide",d3.forceCollide().radius(function(d){
-  //   return 10
-  // }))
-    .on("tick",simulationRan)
-    ;
+
+    .force("forceX", d3.forceX(d => {
+        if (d.Gender === "Female") return w / 4;  // Left side
+        if (d.Gender === "Male") return (3 * w) / 4; // Right side
+        return w / 2;  // Center for Non-Binary
+    }).strength(0.5)) // Higher strength keeps nodes in place
+
+    .force("forceY", d3.forceY(d => h/2 - 30).strength(0.2)) // Keeps nodes from spreading too much
+
+    .force("manyBody", d3.forceManyBody().strength(-5)) // Reduces excessive repulsion
+    .force("collide", d3.forceCollide().radius(12)) // Prevents overlap
+    .force("radial", d3.forceRadial(120, (3 * w) / 4, h / 2).strength(d => d.Gender === "Male" ? 0.4 : 0)) 
+
+    .on("tick", simulationRan);
+// let simulation = d3.forceSimulation(currentData)
+//      .force("forceX",d3.forceX(w*6/9))
+//      .force("forceY",d3.forceY(380))
+//      .force("manyBody",d3.forceManyBody().strength(-20))
+//   //.force("center",d3.forceCenter([w/2,h/2]))
+//   //  .force("collide",d3.forceCollide().radius(function(d){
+//   //   return 10
+//   // }))
+//     .on("tick",simulationRan)
+//     ;
 
 function simulationRan(){
 //  console.log(basicInfo[0].x);
@@ -54,20 +74,26 @@ let none = 0;
 //let time = 1000;
 femaleNumtxt = viz.append("text")
         .attr("x",30)
-        .attr("y",100)
-        .attr("font-size",50)
+        .attr("y",600)
+        .attr("font-size",30)
         .attr("fill","#8B0101")
-        .attr("font-family","Nanum Brush Script")
+        .attr("font-family","Kranky")
         .attr("background-color","white")
         ;
 maleNumtxt = viz.append("text")
               .attr("x",30)
-              .attr("y",150)
-              .attr("font-size",50)
+              .attr("y",630)
+              .attr("font-size",30)
               .attr("fill","#070E3F")
-              .attr("font-family","Nanum Brush Script")
+              .attr("font-family","Kranky")
               ;
-
+nonNumtxt = viz.append("text")
+          .attr("x",30)
+          .attr("y",660)
+          .attr("font-size",30)
+          .attr("fill","#E4A332")
+          .attr("font-family","Kranky")
+          ;
 
 
 // let quickText = viz.append("text")
@@ -101,6 +127,7 @@ if (basicInfo[a].Gender == "-"){
 }
 femaleNumtxt.text("Current female number:" + femaleNum)
 maleNumtxt.text("Current male number:" + maleNum)
+nonNumtxt.text("Current non-binary/other number:" + none)
 let defs = basicInfoGroups.append("defs")
 let pattern = defs.append("pattern")
                     .attr("id",function(d, i){
@@ -126,7 +153,7 @@ let image = pattern.append("image")
 
 singleImg = basicInfoGroups
                     .append("circle")
-                    .attr("r",15)
+                    .attr("r",10)
                     .attr("fill",function(d){
                              if (d.Gender == "Female") {
                                return "#8B0101"
@@ -140,34 +167,32 @@ singleImg = basicInfoGroups
                            }
                          )
                     .on("mouseover",function(d,index){
-                  //  console.log("selected");
-                          //    console.log(d,index);
-                              let url = "url(#image"+index+")";
-                          //    console.log(url);
-
-                              d3.select(this)
-                                .attr("fill", url)
-                                .transition()
-                                .duration(500)
-                                .attr("r",100)
+                          let url = "url(#image"+index+")";
+                          d3.select(this.parentNode).raise();
+                          d3.select(this)
+                            .attr("fill", url)
+                            .transition()
+                            .duration(500)
+                            .attr("r",100)
                           })
 
                     .on("mouseout",function(d,i){
                           d3.select(this)
                           .transition()
-                          .attr("r",15)
+                          .attr("r",10)
                         });
 
 
 simulation.nodes(currentData);
 
 simulation.alpha(1).restart();
+simulation.tick(4);
 a ++
 if(a == basicInfo.length){
      clearInterval(enter);
  }
 }
-enter = setInterval(enterHero,1)
+enter = setInterval(enterHero,20)
 
 
 

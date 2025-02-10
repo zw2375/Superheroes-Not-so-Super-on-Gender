@@ -136,11 +136,12 @@ container.append("rect")
         ;
 
 viz.append("image")
-          .attr("x",1000)
+          .attr("x",1100)
           .attr("y",70)
-          .attr("width",500)
-          .attr("height",650)
-          .attr("xlink:href","https://thumbs.gfycat.com/BlaringCoolGemsbuck-small.gif")
+          // .attr("width",700)
+          .attr("height",450)
+          .attr("href","/spider2.gif")
+          // .attr("xlink:href","https://thumbs.gfycat.com/BlaringCoolGemsbuck-small.gif")
           ;
 
 
